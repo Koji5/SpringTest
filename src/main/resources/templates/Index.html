@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout2}" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>index</title>
+	</head>
+	<body>
+		<h3 layout:fragment="header">Index</h3>
+		<ol layout:fragment="breadcrumb">
+			<li class="breadcrumb-item active" aria-current="page">Index</li>
+		</ol>
+		<div layout:fragment="contents">
+			<div class="container">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>画面ID</th>
+							<th>タイトル</th>
+							<th>説明</th>
+							<th>日付</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="indexList : ${indexListDto}">
+							<td class="text-nowrap">
+								<a th:href="@{/{id}(id=${indexList.screenId})}" 
+									type="button" 
+									class="btn btn-primary btn-sm" 
+									th:text="${indexList.screenId}"></a>
+							</td>
+							<td th:text="${indexList.indexTitle}" class="text-nowrap"></td>
+							<td th:text="${indexList.indexExp}" class="text-nowrap"></td>
+							<td class="text-nowrap" th:text="${#dates.format(indexList.indexDate, 'yyyy年MM月dd日')}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</body>
+</html>

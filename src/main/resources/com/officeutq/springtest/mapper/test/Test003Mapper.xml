@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.officeutq.springtest.mapper.test.Test003Mapper">
+	<resultMap id="mixResultMap" type="com.officeutq.springtest.domain.test.Test003ResultDto">
+		<!-- 
+		<collection property="information" resultMap="com.officeutq.springtest.mapper.mybatis.Test003FruitsInformationMapper.BaseResultMap"/>
+		<collection property="partner" resultMap="com.officeutq.springtest.mapper.mybatis.Test003FruitsPartnerMapper.BaseResultMap"/>
+		<collection property="transaction" resultMap="com.officeutq.springtest.mapper.mybatis.Test003FruitsTransactionMapper.BaseResultMap"/>
+		-->
+		<result column="sequence_id" jdbcType="INTEGER" property="sequenceId" />
+		<result column="fruits_id" jdbcType="VARCHAR" property="fruitsId" />
+		<result column="fruits_name" jdbcType="VARCHAR" property="fruitsName" />
+		<result column="fruits_price" jdbcType="INTEGER" property="fruitsPrice" />
+	    <result column="partner_id" jdbcType="VARCHAR" property="partnerId" />
+		<result column="partner_name" jdbcType="VARCHAR" property="partnerName" />
+		<result column="partner_products" jdbcType="VARCHAR" property="partnerProducts" />
+		<result column="transaction_count" jdbcType="INTEGER" property="transactionCount" />
+		<result column="transaction_date" jdbcType="DATE" property="transactionDate" />
+	</resultMap>
+	
+	<select id="selectAll" resultMap="mixResultMap">
+			<!-- 
+			<include refid="com.officeutq.springtest.mapper.mybatis.Test003FruitsInformationMapper.Base_Column_List" />
+			<include refid="com.officeutq.springtest.mapper.mybatis.Test003FruitsPartnerMapper.Base_Column_List" />
+			<include refid="com.officeutq.springtest.mapper.mybatis.Test003FruitsTransactionMapper.Base_Column_List" />
+			-->
+		with partner as(
+		select
+			array_agg(i.fruits_name) products,
+			p.partner_id,
+			p.partner_name
+		from
+			(
+			select
+				unnest(partner_products) partner_product,
+				partner_id,
+				partner_name
+			from
+				test003_fruits_partner
+			) p
+			left join test003_fruits_information i
+				on p.partner_product = i.fruits_id 
+		group by 
+			p.partner_id,
+			p.partner_name
+		)
+		select
+			i.fruits_id,
+			i.fruits_name,
+			i.fruits_price,
+			p.partner_id,
+			p.partner_name,
+			array_to_string(p.products,' , ') partner_products,
+			t.sequence_id,
+			t.transaction_count,
+			t.transaction_date
+		from
+			test003_fruits_transaction t
+				left join
+					test003_fruits_information i
+						on t.fruits_id = i.fruits_id
+				left join
+					partner p
+						on t.partner_id = p.partner_id
+		order by
+			t.transaction_date desc,
+			t.partner_id,
+			t.fruits_id
+	</select>
+</mapper>

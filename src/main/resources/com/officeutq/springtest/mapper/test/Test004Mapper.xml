@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.officeutq.springtest.mapper.test.Test004Mapper">
+	<resultMap id="resultMap" type="java.lang.String">
+		<result column="screen_id" jdbcType="VARCHAR" property="screenId" />
+	</resultMap>
+	<select id="getScreenIdList" resultMap="resultMap">
+		select
+			screen_id
+		from
+			index_list
+		order by
+			screen_id
+	</select>
+</mapper>

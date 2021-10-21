@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	<head>
+    	<meta charset="UTF-8"/>
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!-- Common styles -->
+		<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0-1/css/bootstrap.min.css}" />
+		<link rel="stylesheet" th:href="@{/webjars/jquery-ui/1.12.1/jquery-ui.min.css}" />
+		<link rel="stylesheet" th:href="@{/webjars/highlightjs/10.1.2/styles/solarized-light.min.css}">
+	</head>
+	<body>
+
+		<!-- Header -->
+		<header class="container-fluid bg-light">
+			<div class="row mb-3 pt-2">
+				<h3 class="col-md-6 text-nowrap" layout:fragment="header"></h3>
+				<h4 class="col-md-6 text-right text-muted text-nowrap">Spring Tool Suite 4 練習</h4>
+			</div>
+		</header>
+		
+		<!-- パンくず ここから -->
+		<div class="col-md-12">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb" layout:fragment="breadcrumb">
+				</ol>
+			</nav>
+		</div>
+		<!-- パンくず ここまで -->
+		
+		<!-- Contents -->
+		<div class="container-md">
+			<div class="row mb-3" layout:fragment="contents"></div>
+		</div>
+		
+		<div class="container-md">
+			<div class="row mb-3">
+				<div class="col-md-12 text-center">
+					<a th:href="@{/}" type="button" class="btn btn-primary btn-sm">INDEX</a>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Footer -->
+		<footer class="container-fluid bg-light">
+			<div class="row">
+				<div class="col-md-12 text-center">
+					©Koji Sakamoto
+				</div>
+			</div>
+		</footer>
+		
+		<!-- Modal -->
+		<div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="modal1Label" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modal1Label">Spring Tool Suite 4入門</h5>
+					</div>
+					<div class="modal-body" id="modal1Body"></div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" id="modal1Ok">OK</button>
+						<button type="button" class="btn btn-secondary" id="modal1Cancel">Cancel</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Common scripts -->
+		<script th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+		<script th:src="@{/webjars/jquery-ui/1.12.1/jquery-ui.min.js}"></script>
+		<script th:src="@{/webjars/popper.js/2.5.4/umd/popper.min.js}"></script>
+		<script th:src="@{/webjars/bootstrap/4.6.0-1/js/bootstrap.min.js}"></script>
+		<script th:src="@{/webjars/highlightjs/10.1.2/highlight.min.js}"></script>
+		<script th:src="@{/js/common.js}"></script>
+		<div layout:fragment="jsFiles"></div>
+		<!-- script -->
+		<script layout:fragment="script"></script>
+	</body>
+</html>

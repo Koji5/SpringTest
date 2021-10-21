@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout2}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title th:text="|${thisPage.screenId} ${thisPage.indexTitle}|"></title>
+	</head>
+	<body>
+		<h3 layout:fragment="header" th:text="|${thisPage.screenId} ${thisPage.indexTitle}|"></h3>
+		<ol layout:fragment="breadcrumb">
+			<li class="breadcrumb-item"><a th:href="@{/}">Index</a></li>
+			<li class="breadcrumb-item active" aria-current="page" th:text="${thisPage.screenId}"></li>
+		</ol>
+		<div layout:fragment="contents">
+			<div class="col-md-2 p-3 font-weight-bold bg-info text-light">説明</div>
+			<div class="col-md-10 p-3 border border-bottom-0 border-info" th:text="${thisPage.indexExp}"></div>
+			<div class="col-md-2 p-3 font-weight-bold bg-info text-light border-top border-white">日付</div>
+			<div class="col-md-10 p-3 border border-bottom-0 border-info" th:text="${#dates.format(thisPage.indexDate, 'yyyy年MM月dd日')}"></div>
+			<div class="col-md-2 p-3 font-weight-bold bg-info text-light border-top border-white">メモ</div>
+			<div class="col-md-10 p-3 border border-bottom-0 border-info" th:utext="${thisPage.indexMemo}"></div>
+			<div class="col-md-2 p-3 font-weight-bold bg-info text-light border-top border-white">結果</div>
+			<div class="col-md-10 p-3 border border-info table-responsive">なし</div>
+		</div>
+	</body>
+</html>
