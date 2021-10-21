@@ -51,22 +51,6 @@ public class Test006Service {
     	String uid = "RZ1dZJobMzftqohyGPrRqJ7SsA93";
     	UserRecord userRecord = null;
 
-//		UpdateRequest request = new UpdateRequest(uid)
-//			    .setEmail("sakamoto5002@gmail.com")
-//			    .setPhoneNumber("+819084017696")
-//			    .setEmailVerified(true)
-//			    .setPassword("taka5002")
-//			    .setDisplayName("坂本 浩二")
-//			    .setPhotoUrl("https://drive.google.com/file/d/1qImWGNanFPw1XoQd_adVA-1WFf_Y05m9/view?usp=sharing")
-//			    .setDisabled(true);
-//
-//			try {
-//				userRecord = FirebaseAuth.getInstance().updateUser(request);
-//			} catch (FirebaseAuthException e1) {
-//				// TODO 自動生成された catch ブロック
-//				e1.printStackTrace();
-//			}
-
 		// ユーザー情報の取得
 		try {
 			userRecord = FirebaseAuth.getInstance().getUser(uid);
