@@ -202,7 +202,7 @@ public class Test007Service {
     		AccessLog al = new AccessLog(log.split(" ")[0], log.split(" ")[1], log.split(" ")[2]);
     		list.add(al);
     	}
-    	return list.stream().sorted(Comparator.comparing(e -> e.getUrl())).filter(e -> e.getCode().equals("200"));
+ //   	return list.stream().sorted(Comparator.comparing(e -> e.getUrl())).filter(e -> e.getCode().equals("200"));
     	
     	
     	return (String[]) list.stream().sorted(Comparator.comparing(e -> e.getUrl())).filter(e -> e.getCode().equals("200")).toArray();
