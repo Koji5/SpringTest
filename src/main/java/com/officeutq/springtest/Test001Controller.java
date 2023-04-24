@@ -42,7 +42,7 @@ public class Test001Controller {
     	return list.get(0);
     }
     
-    public List<IndexListDto> findAll() {
+    private List<IndexListDto> findAll() {
         final String sql = "SELECT * From index_list ORDER BY screen_id Limit 10";
         List<Map<String, Object>> list = jdbcTemplate.queryForList(sql);
         List<IndexListDto> indexList = new ArrayList<>();
