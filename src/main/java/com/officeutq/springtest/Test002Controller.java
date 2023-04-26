@@ -31,7 +31,7 @@ public class Test002Controller {
 		return SCREEN_ID;
     }
 	
-    public IndexListDto findThisPart() {
+    private IndexListDto findThisPart() {
     	String sql = "SELECT * FROM index_list WHERE screen_id='" + SCREEN_ID + "'";
     	IndexResultSetExtractor extractor = new IndexResultSetExtractor();
     	List<IndexListDto> list = jdbcTemplate.query(sql, extractor);
